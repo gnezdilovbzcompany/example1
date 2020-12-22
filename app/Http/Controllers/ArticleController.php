@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticleCreateRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,10 +38,13 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+         $request->validate([
+            'title' => 'required|unique:articles|max:255',
+             'content'=> 'required'
+        ]);
         $user = Auth::user();
-        $user->articles()->create($request->except('_method', '_token'));
-        //Article::create($request->except('_method', '_token'));
-        return redirect()->back();
+        $model = $user->articles()->create($request->except('_method', '_token'));
+        return redirect()->route('article.edit', [$model]);
     }
 
     /**
