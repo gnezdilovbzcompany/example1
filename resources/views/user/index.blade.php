@@ -7,7 +7,7 @@
             <ul>
                 @foreach($list as $item)
                     <li>
-                        <a  class="btn btn-info" href="{{route('article.edit', [$item])}}"> <i> #{{$item->id}}</i> | {{$item->title}}</a>
+                        <a  class="btn btn-info" href="{{route($modelname.'.edit', [$item])}}"> <i> #{{$item->id}}</i> | {{$item->title}}</a>
                         <form action="{{route($modelname.'.destroy', [$item])}}" method="post">
                             @method('delete')
                             @csrf

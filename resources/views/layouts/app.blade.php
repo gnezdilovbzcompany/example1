@@ -30,6 +30,8 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a href="{{route('article.index')}}">Clanky</a>
+                <a href="{{route('user.index')}}">Uzivatele</a>
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">

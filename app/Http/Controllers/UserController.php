@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class ArticleController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $list = Article::all();
-        return view('article.index')->with(['list'=>$list, 'modelname'=>'article']);
+        $list = User::all();
+        return view('user.index')->with(['list'=>$list, 'modelname'=>'user']);
     }
 
     /**
@@ -25,7 +25,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('article.create');
+        return view('user.create');
     }
 
     /**
@@ -36,7 +36,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        Article::create($request->except('_method', '_token'));
+        User::create($request->except('_method', '_token'));
         return redirect()->back();
     }
 
@@ -48,8 +48,8 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        $item = Article::findOrFail($id);
-        return view('article.show')->with(['item'=>$item, 'modelname'=>'article']);
+        $item = User::findOrFail($id);
+        return view('user.show')->with(['item'=>$item, 'modelname'=>'user']);
     }
 
     /**
@@ -60,8 +60,8 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        $item = Article::findOrFail($id);
-        return view('article.edit')->with(['item'=>$item, 'modelname'=>'article']);
+        $item = User::findOrFail($id);
+        return view('user.edit')->with(['item'=>$item, 'modelname'=>'user']);
     }
 
     /**
@@ -73,7 +73,7 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        (Article::findOrFail($id))->update($request->except('_method', '_token'));
+        (User::findOrFail($id))->update($request->except('_method', '_token'));
         return redirect()->back();
     }
 
@@ -85,7 +85,7 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        Article::findOrFail($id)->delete();
+        User::findOrFail($id)->delete();
         return redirect()->back();
     }
 }

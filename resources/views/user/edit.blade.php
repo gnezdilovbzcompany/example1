@@ -6,7 +6,7 @@
             <form action="{{route($modelname.'.update', [$item])}}" method="post">
                 @method('put')
                 @csrf
-                @include('article._form')
+                @include($modelname.'._form')
                 <button type="submit">Odeslat</button>
             </form>
 
