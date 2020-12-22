@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -25,7 +26,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('article.create');
+        return view('article.create')->with(['modelname'=>'article']);
     }
 
     /**
@@ -36,7 +37,9 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        Article::create($request->except('_method', '_token'));
+        $user = Auth::user();
+        $user->articles()->create($request->except('_method', '_token'));
+        //Article::create($request->except('_method', '_token'));
         return redirect()->back();
     }
 
